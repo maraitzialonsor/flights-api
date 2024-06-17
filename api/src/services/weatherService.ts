@@ -22,8 +22,6 @@ export const getWeatherData = async (latitude: number, longitude: number) => {
         feels_like: weatherData.main.feels_like,
         temp_min: weatherData.main.temp_min,
         temp_max: weatherData.main.temp_max,
-        pressure: weatherData.main.pressure,
-        humidity: weatherData.main.humidity,
       },
     };
 
