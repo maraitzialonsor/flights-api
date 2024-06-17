@@ -19,8 +19,7 @@ app.use(express.json());
 
 app.use('/api', flightRoutes);
 
-const flightModel = new FlightModel('./flights.db');
-
+const flightModel = new FlightModel('./api/src/database/flights.db');
 // Base de datos
 process.on('SIGINT', () => {
   flightModel.closeConnection();

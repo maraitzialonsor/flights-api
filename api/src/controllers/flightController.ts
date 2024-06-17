@@ -4,7 +4,7 @@ import { getWeatherData } from '../services/weatherService';
 import NodeCache from 'node-cache';
 
 const cache = new NodeCache();
-const flightModel = new FlightModel('./flights.db');
+const flightModel = new FlightModel('./api/src/database/flights.db');
 
 export const getFlightWeather = async (req: Request, res: Response) => {
   const flightNum = req.params.flightNum as string;
