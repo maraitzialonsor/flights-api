@@ -5,6 +5,10 @@ export interface Flight {
   origin_longitude: number;
   destination_latitude: number;
   destination_longitude: number;
+  origin: string;
+  destination: string;
+  origin_name: string;
+  destination_name: string;
 }
 
 export class FlightModel {
@@ -23,7 +27,8 @@ export class FlightModel {
   async getFlightCoordinates(flightNum: string): Promise<Flight | null> {
     return new Promise((resolve, reject) => {
       const query = `
-        SELECT origin_latitude, origin_longitude, destination_latitude, destination_longitude
+        SELECT origin_latitude, origin_longitude, destination_latitude, destination_longitude, origin, destination,
+        origin_name, destination_name
         FROM flights
         WHERE flight_num = ?
       `;

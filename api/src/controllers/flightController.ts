@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { FlightModel } from '../models/Flight';
 import { getWeatherData } from '../services/weatherService';
 import NodeCache from 'node-cache';
-import { json } from 'sequelize';
 
 const cache = new NodeCache();
 const flightModel = new FlightModel('./flights.db');
@@ -24,18 +23,22 @@ export const getFlightWeather = async (req: Request, res: Response) => {
     }
 
     const { origin_latitude, origin_longitude, destination_latitude, destination_longitude } = flight;
+    const origin = flight.origin;
+    const destination = flight.destination;
+    const origin_name = flight.origin_name;
+    const destination_name = flight.destination_name;
     const originWeather = await getWeatherData(origin_latitude, origin_longitude);
     const destinationWeather = await getWeatherData(destination_latitude, destination_longitude);
 
     const response = {
       origin: {
-        latitude: origin_latitude,
-        longitude: origin_longitude,
+        origin: origin,
+        origin_name: origin_name,
         weather: originWeather
       },
       destination: {
-        latitude: destination_latitude,
-        longitude: destination_longitude,
+        destination: destination,
+        destination_name: destination_name,
         weather: destinationWeather
       }
     };
